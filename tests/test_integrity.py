@@ -184,7 +184,10 @@ def t_assert_immutable():
     with tempfile.TemporaryDirectory() as tmp:
         fp = os.path.join(tmp, "t.csv"); write_raw(fp, "ok")
         assert assert_immutable(fp)
-
+def t_data_paths_are_strings():
+    from core.constants import DATA_RAW_DIR, DATA_PROCESSED_DIR, DATA_RESULTS_DIR
+    for p in (DATA_RAW_DIR, DATA_PROCESSED_DIR, DATA_RESULTS_DIR):
+        assert isinstance(p, str) and len(p) > 0
 
 TESTS = [
     ("PROJECT_ID == 'EDGECORE_V2'",          t_project_id),
